@@ -63,19 +63,19 @@ the Outbox Pattern ensures:
 
 ---
 ▶️ Running the Application
+
 Step 1 — Start Kafka
-Start Kafka  on your local machine or Docker.
 
 bash
-.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+- ✅.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
 
-.\bin\windows\kafka-server-start.bat .\config\server.properties
+- ✅.\bin\windows\kafka-server-start.bat .\config\server.properties
 
-.\bin\windows\kafka-console-consumer.bat --topic orders --from-beginning --bootstrap-server localhost:9092
+- ✅.\bin\windows\kafka-console-consumer.bat --topic orders --from-beginning --bootstrap-server localhost:9092
 
-.\bin\windows\kafka-console-consumer.bat --topic orders-topic-dlq --from-beginning --bootstrap-server localhost:9092
+- ✅.\bin\windows\kafka-console-consumer.bat --topic orders-topic-dlq --from-beginning --bootstrap-server localhost:9092
 
-.\bin\windows\kafka-topics.bat --list --bootstrap-server localhost:9092
+- ✅.\bin\windows\kafka-topics.bat --list --bootstrap-server localhost:9092
 
 
 
@@ -117,9 +117,13 @@ When Kafka is up
 
 When Kafka is down
 ⚠️ Kafka unavailable — event stored in Outbox
+
 🔁 Will retry once Kafka is back online
+
 🧱 Key Learnings
+
 Maintain atomicity between DB and Kafka with Outbox Pattern
+
 
 Use @Transactional to ensure consistency
 
