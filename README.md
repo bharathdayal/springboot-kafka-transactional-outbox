@@ -68,10 +68,15 @@ Start Kafka  on your local machine or Docker.
 
 bash
 .\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+
 .\bin\windows\kafka-server-start.bat .\config\server.properties
+
 .\bin\windows\kafka-console-consumer.bat --topic orders --from-beginning --bootstrap-server localhost:9092
+
 .\bin\windows\kafka-console-consumer.bat --topic orders-topic-dlq --from-beginning --bootstrap-server localhost:9092
+
 .\bin\windows\kafka-topics.bat --list --bootstrap-server localhost:9092
+
 
 
 🧪 Testing with Postman
@@ -94,9 +99,13 @@ Order data stored in MySQL (orders table)
 
 Corresponding event stored in outbox_event
 
-OutboxPublisher will publish the event to Kafka topic order-events
+OutboxPublisher will publish the event to Kafka topic orders
 
 Consumer logs received event
+
+
+<img width="1083" height="229" alt="image" src="https://github.com/user-attachments/assets/083ff7c8-96c6-48f9-9477-251857332393" />
+
 
 
 🧾 Example Logs
