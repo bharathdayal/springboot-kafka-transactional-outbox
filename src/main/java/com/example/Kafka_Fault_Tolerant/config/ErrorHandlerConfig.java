@@ -30,9 +30,10 @@ public class ErrorHandlerConfig {
 
     @Bean
     public ConsumerRecordRecoverer fallbackRecoverer(DeadLetterPublishingRecoverer dlpr,
+                                                     KafkaTemplate<String, String> nonTxKafkaTemplate,
                                                      FailedEventRepository failedEventRepository) {
         System.out.println("[Config] creating FallbackDeadLetterRecoverer");
-        return new FallbackDeadLetterRecoverer(dlpr, failedEventRepository);
+        return new FallbackDeadLetterRecoverer(dlpr, nonTxKafkaTemplate,failedEventRepository);
     }
 
 
