@@ -17,7 +17,7 @@ public class DltListener {
     }
 
     @KafkaListener(topics = "orders-dlt",groupId = "orders-service", containerFactory = "kafkaListenerContainerFactory")
-    public void listenDlt(ConsumerRecord<String, String> record) {
+    public void listenDlt(ConsumerRecord<String, String> record,Exception cause) {
         System.out.println("[DLT Listener] got record from " + record.topic() + " key=" + record.key());
 
         try {
@@ -26,7 +26,7 @@ public class DltListener {
             fe.setPartitionNo(record.partition());
             fe.setRecordKey(record.key() == null ? null : String.valueOf(record.key()));
             fe.setPayload(record.value() == null ? null : String.valueOf(record.value()));
-            fe.setErrorMessage("DLT arrival");
+            fe.setErrorMessage(cause == null ? null : cause.toString());
             FailedEvent saved = repository.save(fe);
             System.out.println("[DLT Listener] persisted FailedEvent id=" + saved.getId());
         } catch (Exception ex) {
